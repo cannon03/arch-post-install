@@ -1,17 +1,11 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-echo ">>> Updating system..."
-sudo pacman -Syu --noconfirm
-
-echo ">>> Installing minimal required packages..."
+#!/bin/bash
 
 sudo pacman -S --noconfirm \
     hyprland \
     hyprpaper \
     hypridle \
     xdg-desktop-portal-hyprland \
-    xwayland \
+    xorg-xwayland \
     wl-clipboard \
     ghostty \
     fuzzel \
