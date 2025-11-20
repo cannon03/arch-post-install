@@ -1,25 +1,39 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 28,
-
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": [],
-    "modules-right": ["network", "clock"],
-
-    "hyprland/workspaces": {
-        "all-outputs": true
-    },
-
-    "network": {
-        "format-wifi": "{essid} {signalStrength}%",
-        "format-ethernet": "Ethernet",
-        "format-disconnected": "No Net",
-        "interval": 10
-    },
-
-    "clock": {
-        "format": "%H:%M",
-        "interval": 60
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [],
+  "modules-right": [
+    "network",
+    "battery",
+    "clock"
+  ],
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "format": "{name}",
+    "format-icons": {
+      "active": "",
+      "default": ""
     }
+  },
+  "network": {
+    "format-wifi": "{essid} {signalStrength}%",
+    "format-ethernet": "eth",
+    "format-disconnected": "offline",
+    "tooltip": false
+  },
+  "battery": {
+    "format": "{capacity}%",
+    "format-charging": "⚡ {capacity}%",
+    "format-plugged": "🔌 {capacity}%",
+    "tooltip": false
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "interval": 60,
+    "tooltip": false
+  }
 }

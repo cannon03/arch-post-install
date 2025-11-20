@@ -1,26 +1,65 @@
-/* Minimal Waybar styling */
+/* ================================
+   Beautiful Minimal Waybar Theme
+   ================================ */
 
 * {
     font-family: "JetBrainsMono Nerd Font", monospace;
     font-size: 13px;
-    color: #ffffff;
+    color: #e5e5e5;
 }
 
 window {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(20, 20, 20, 0.45);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+}
+
+/* --- Workspaces --- */
+#workspaces {
+    padding: 0 6px;
 }
 
 #workspaces button {
+    margin: 4px 4px;
     padding: 0 8px;
-    color: #dddddd;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+    color: #cccccc;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.12);
 }
 
 #workspaces button.active {
-    color: #ffffff;
-    border-bottom: 2px solid #ffffff;
+    background: rgba(255, 255, 255, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: white;
 }
 
+/* --- Modules (Right side) --- */
 #network,
+#battery,
 #clock {
-    margin: 0 10px;
+    padding: 0 12px;
+    margin: 0 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: background 0.15s ease;
+}
+
+#network:hover,
+#battery:hover,
+#clock:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* --- Remove module overflow glow --- */
+tooltip {
+    background: rgba(15, 15, 15, 0.85);
+    border-radius: 6px;
+    padding: 6px 10px;
 }
