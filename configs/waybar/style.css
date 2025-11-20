@@ -1,0 +1,26 @@
+/* Minimal Waybar styling */
+
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+window {
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #dddddd;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+}
+
+#network,
+#clock {
+    margin: 0 10px;
+}

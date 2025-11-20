@@ -1,0 +1,25 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 28,
+
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": [],
+    "modules-right": ["network", "clock"],
+
+    "hyprland/workspaces": {
+        "all-outputs": true
+    },
+
+    "network": {
+        "format-wifi": "{essid} {signalStrength}%",
+        "format-ethernet": "Ethernet",
+        "format-disconnected": "No Net",
+        "interval": 10
+    },
+
+    "clock": {
+        "format": "%H:%M",
+        "interval": 60
+    }
+}
