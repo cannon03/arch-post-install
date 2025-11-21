@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+source ./00-env.sh
+
 echo ">>> Enabling system services..."
 
 
 sudo cp -r ./configs/systemd/ /etc/systemd/
 
-systemctl daemon-reload
+sudo systemctl daemon-reload
 
 # Internet
 sudo systemctl enable NetworkManager
