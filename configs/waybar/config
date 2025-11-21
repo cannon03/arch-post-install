@@ -1,47 +1,60 @@
 {
   "layer": "top",
   "position": "top",
-  "height": 28,
+  "height": 34,
   "modules-left": [
-    "hyprland/workspaces"
+    "workspaces"
   ],
-  "modules-center": [],
+  "modules-center": [
+    "clock"
+  ],
   "modules-right": [
     "network",
     "battery",
-    "clock"
+    "tray"
   ],
-  "hyprland/workspaces": {
-    "all-outputs": true,
+  "font": "Inter 10",
+  "background": "transparent",
+  "border": "none",
+  "module-margin": 6,
+  "spacing": 8,
+  "workspaces": {
     "format": "{name}",
-    "format-icons": {
-      "active": "",
-      "default": ""
-    }
-  },
-  "network": {
-    "format-wifi": "{essid} {signalStrength}%",
-    "format-ethernet": "eth",
-    "format-disconnected": "offline",
-    "tooltip": false
-  },
-  "battery": {
-    "format": "🔋 {capacity}%",
-    "format-charging": "⚡ {capacity}%",
-    "format-plugged": "🔌 {capacity}%",
-    "format-full": "🔋 {capacity}%",
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format-warning": "⚠️ {capacity}%",
-    "format-critical": "❗ {capacity}%",
-    "interval": 30,
-    "tooltip": false
+    "disable-scroll": false,
+    "tooltip": false,
+    "all-outputs": true,
+    "max-icon-size": 18
   },
   "clock": {
-    "format": "{:%H:%M}",
-    "interval": 60,
-    "tooltip": false
+    "format": "{%a %b %d}   %H:%M",
+    "tooltip": false,
+    "on-click": "gnome-calendar"
+  },
+  "network": {
+    "interface": "wlan0",
+    "format-wifi": " {essid} {signalStrength}%",
+    "format-ethernet": " {ifname}",
+    "format-disconnected": "睊 offline",
+    "tooltip": false,
+    "max-ssid-length": 18
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "⚡ {capacity}%",
+    "tooltip": true,
+    "format-low": "⚠️ {capacity}%",
+    "critical-percentage": 10,
+    "low-percentage": 20,
+    "hide-when-full": false
+  },
+  "tray": {
+    "icon-size": 18,
+    "max-length": 0
+  },
+  "sway/workspaces": {
+    "disable-scroll": false
+  },
+  "bindings": {
+    "cycle-workspace": "binding=super+Tab; cmd=swaymsg workspace next"
   }
 }

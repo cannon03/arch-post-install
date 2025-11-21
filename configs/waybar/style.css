@@ -1,110 +1,139 @@
-/* ================================
-   Elegant Waybar Theme (GTK CSS)
-   ================================ */
+/* style.css - Waybar (GTK-like variables) */
 
-* {
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 13px;
-    color: #f0f0f0;
-    font-weight: 400;
+/* -------------------------
+   Theme variables (GTK-like)
+   ------------------------- */
+:root {
+  /* Backgrounds */
+  --bg: rgba(26, 28, 30, 0.85);        /* bar background */
+  --panel: rgba(36, 38, 40, 0.85);     /* panel items bg on hover/active */
+
+  /* Foreground / text */
+  --fg: #e6eef6;
+  --muted: #a6b0bd;
+
+  /* Accent */
+  --accent: #7ccfdf;
+  --accent-strong: #4fb3c7;
+
+  /* Status colors */
+  --ok: #8bd77c;
+  --warn: #f0b36b;
+  --crit: #ff6b6b;
+
+  /* Geometry */
+  --radius: 8px;
+  --padding: 6px 10px;
 }
 
-/* Enhanced bar background */
-window {
-    background-color: rgba(16, 16, 16, 0.92);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.20);
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    margin: 0 4px 0 4px;
+/* Bar container */
+#window {
+  background: transparent;
 }
 
-/* --- Workspaces --- */
+#bar {
+  background: var(--bg);
+  color: var(--fg);
+  border-radius: var(--radius);
+  padding: 4px;
+  margin: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Each module cell */
+.background, .bar, .module {
+  background: transparent;
+  color: var(--fg);
+  font-weight: 500;
+  height: 26px;
+  line-height: 26px;
+}
+
+/* Workspace buttons */
 #workspaces {
-    padding: 4px 12px;
+  display: flex;
+  gap: 8px;
 }
 
 #workspaces button {
-    margin: 8px 4px;
-    padding: 6px 16px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #c0c0c0;
-    transition: all 220ms ease;
-    font-weight: 500;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.1), 0 2px 6px rgba(0, 0, 0, 0.2);
+  background: transparent;
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: var(--muted);
+  border: none;
+  transition: background 120ms ease, color 120ms ease, transform 120ms ease;
 }
 
-#workspaces button:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08));
-    border-color: rgba(255, 255, 255, 0.25);
-    color: #e8e8e8;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.15), 0 4px 8px rgba(0, 0, 0, 0.3);
+/* active workspace */
+#workspaces button.workspace--focused,
+#workspaces button[workspace-active="true"] {
+  color: var(--fg);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.06));
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  transform: translateY(-1px);
 }
 
-#workspaces button.active {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.12));
-    border-color: rgba(255, 255, 255, 0.40);
-    color: #ffffff;
-    font-weight: 600;
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.2), 0 4px 10px rgba(0, 0, 0, 0.35);
+/* visible but not focused */
+#workspaces button.workspace--visible {
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.02);
 }
 
-/* --- Modules (Right side) --- */
-#network,
-#battery,
+/* urgent */
+#workspaces button.workspace--urgent {
+  color: var(--crit);
+  border: 1px solid rgba(255,0,64,0.08);
+  animation: pulse 1500ms infinite;
+}
+
+/* Clock center */
 #clock {
-    padding: 6px 18px;
-    margin: 8px 3px;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.06));
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    transition: all 200ms ease;
-    min-width: 100px;
-    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.12), 0 3px 8px rgba(0, 0, 0, 0.25);
-    font-weight: 500;
+  font-weight: 600;
+  color: var(--fg);
+  padding: 4px 12px;
+  border-radius: 6px;
 }
 
-#network:hover,
-#battery:hover,
-#clock:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.10));
-    border-color: rgba(255, 255, 255, 0.32);
-    color: #ffffff;
-    box-shadow: inset 0 1px 3px rgba(255, 255, 255, 0.18), 0 5px 12px rgba(0, 0, 0, 0.35);
+/* Right-side modules style */
+#network, #battery {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-/* Battery specific styling */
-#battery {
-    min-width: 120px;
-    font-weight: 600;
+/* Battery status colors */
+#battery[data-state="Charging"] { color: var(--accent); }
+#battery[data-state="Discharging"] { color: var(--fg); }
+#battery[data-state="Low"] { color: var(--warn); }
+#battery[data-state="Critical"] { color: var(--crit); }
+
+/* Network strong/weak (Waybar can emit classes or data attributes if configured) */
+#network[data-signal="strong"] { color: var(--ok); }
+#network[data-signal="weak"] { color: var(--warn); }
+#network[data-signal="none"] { color: var(--muted); }
+
+/* tray - subtle */
+#tray {
+  margin-left: 6px;
+  padding-left: 6px;
+  border-left: 1px solid rgba(255,255,255,0.03);
 }
 
-#battery.warning {
-    background: linear-gradient(135deg, rgba(255, 193, 7, 0.20), rgba(255, 193, 7, 0.12));
-    border-color: rgba(255, 193, 7, 0.40);
-    color: #ffc107;
-    box-shadow: inset 0 1px 2px rgba(255, 193, 7, 0.15), 0 3px 8px rgba(255, 193, 7, 0.2);
+/* Hover states */
+button:hover, #network:hover, #battery:hover, #clock:hover {
+  background: var(--panel);
+  color: var(--fg);
+  cursor: pointer;
 }
 
-#battery.critical {
-    background: linear-gradient(135deg, rgba(220, 53, 69, 0.20), rgba(220, 53, 69, 0.12));
-    border-color: rgba(220, 53, 69, 0.40);
-    color: #dc3545;
-    box-shadow: inset 0 1px 2px rgba(220, 53, 69, 0.15), 0 3px 8px rgba(220, 53, 69, 0.2);
-}
-
-#battery.charging {
-    background: linear-gradient(135deg, rgba(40, 167, 69, 0.20), rgba(40, 167, 69, 0.12));
-    border-color: rgba(40, 167, 69, 0.40);
-    color: #28a745;
-    box-shadow: inset 0 1px 2px rgba(40, 167, 69, 0.15), 0 3px 8px rgba(40, 167, 69, 0.2);
-}
-
-/* Tooltip */
-tooltip {
-    background-color: rgba(15, 15, 15, 0.90);
-    border-radius: 6px;
-    padding: 6px 10px;
-    color: #ffffff;
+/* small animation */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,0,64,0.0); }
+  70% { box-shadow: 0 0 0 6px rgba(255,0,64,0.04); }
+  100% { box-shadow: 0 0 0 0 rgba(255,0,64,0.0); }
 }
