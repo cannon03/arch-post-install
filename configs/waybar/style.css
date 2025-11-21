@@ -1,10 +1,10 @@
-/* =================================================
-   Modern, GTK-CSS compatible Waybar style
-   - No :root, no CSS variables, no unsupported props
-   - Uses @define-color tokens and GTK-friendly properties
-   ================================================= */
+/* ======================================
+   GTK-CSS compatible Waybar theme
+   - No :root, no CSS vars, no text-align
+   - Uses only GTK-friendly properties
+   ====================================== */
 
-/* Colors (GTK style) */
+/* Colors */
 @define-color bar-bg rgba(18,20,22,0.82);
 @define-color item-bg rgba(255,255,255,0.04);
 @define-color item-hover rgba(255,255,255,0.08);
@@ -24,42 +24,38 @@
   border-radius: 12px;
 }
 
-/* Base text/pill style applied to elements inside the bar */
+/* Base pill/text style inside the bar */
 #bar * {
   color: @fg;
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 10px;
   font-weight: 600;
-  text-align: center;
-  min-height: 26px;
+  font-size: 11pt;
 }
 
 /* ======= Workspaces ======= */
-/* The workspaces container itself is left unmodified (Waybar arranges items).
-   Use pill-like buttons to convey state. */
-
 #workspaces button {
   background-color: transparent;
   color: @muted;
   border: none;
-  min-width: 34px;
-  max-width: 160px;
   padding: 6px 12px;
   border-radius: 10px;
+  min-width: 34px;
+  max-width: 160px;
 }
 
-/* focused workspace \u2014 pill with subtle filled background */
+/* focused workspace — subtle filled pill */
 #workspaces button.workspace--focused {
   background-color: @item-bg;
   color: @fg;
 }
 
-/* visible (not focused) \u2014 slightly stronger text */
+/* visible workspace (not focused) */
 #workspaces button.workspace--visible {
   color: @fg;
 }
 
-/* urgent workspace \u2014 high-contrast caution style */
+/* urgent workspace */
 #workspaces button.workspace--urgent {
   background-color: rgba(255,80,80,0.12);
   color: @crit;
@@ -68,26 +64,25 @@
   border-color: rgba(255,80,80,0.14);
 }
 
-/* hover state \u2014 used on interactive items */
+/* hover fallback (GTK hover behavior) */
 #workspaces button:hover {
   background-color: @item-hover;
   color: @fg;
 }
 
-/* ======= Center clock ======= */
+/* ======= Clock (center) ======= */
 #clock {
   background-color: @item-bg;
-  padding: 6px 16px;
+  padding: 6px 14px;
   border-radius: 12px;
   color: @fg;
   font-weight: 700;
-  min-width: 160px;
+  min-width: 140px;
 }
 
-/* Slight hover emphasis for clock */
+/* Hover emphasis for clock */
 #clock:hover {
   background-color: @item-hover;
-  color: @fg;
 }
 
 /* ======= Network ======= */
@@ -98,7 +93,7 @@
   border-radius: 10px;
 }
 
-/* connected / disconnected helpers (Waybar may set classes) */
+/* Connected / disconnected (Waybar may add these classes) */
 #network.linked {
   color: @ok;
 }
@@ -120,7 +115,7 @@
   border-radius: 10px;
 }
 
-/* charging / warning / critical shapes (Waybar sets classes) */
+/* charging / warning / critical classes Waybar may provide */
 #battery.charging {
   color: @accent;
 }
@@ -142,30 +137,30 @@
   color: @fg;
 }
 
-/* ======= System tray ======= */
+/* ======= Tray ======= */
 #tray {
   padding-left: 8px;
   padding-right: 8px;
   border-left: 1px solid rgba(255,255,255,0.04);
 }
 
-/* tray items hover */
+/* tray item hover */
 #tray > .tray-item:hover {
   background-color: @item-hover;
   color: @fg;
 }
 
-/* ======= Small utility styles ======= */
-/* Ensure icons and text align visually */
+/* ======= Small utility helpers ======= */
+/* Ensure icons align visually */
 #bar icon, #bar img {
   vertical-align: middle;
   min-height: 18px;
   min-width: 18px;
 }
 
-/* Small text / muted label helper */
+/* Muted label helper */
 .label-muted {
   color: @muted;
   font-weight: 500;
-  font-size: 11px;
+  font-size: 9pt;
 }
