@@ -6,7 +6,7 @@ source ./00-env.sh
 echo ">>> Enabling system services..."
 
 
-sudo cp -r ./configs/systemd/ /etc/systemd/
+sudo cp -r ./configs/systemd/.  /etc/systemd/
 
 sudo systemctl daemon-reload
 
