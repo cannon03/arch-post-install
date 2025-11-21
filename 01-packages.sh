@@ -2,11 +2,11 @@
 
 sudo pacman -S --noconfirm \
     hyprland \
-    hyprpaper \
     hypridle \
     hyprcursor\
     xdg-desktop-portal-hyprland \
     xorg-xwayland \
+    swaybg \
     wl-clipboard \
     ghostty \
     fuzzel \
