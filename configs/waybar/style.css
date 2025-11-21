@@ -1,101 +1,104 @@
-/* ======================================
-   Modern Waybar Theme (Pure GTK CSS)
-   ====================================== */
+/* =================================================
+   Modern, GTK-CSS compatible Waybar style
+   - No :root, no CSS variables, no unsupported props
+   - Uses @define-color tokens and GTK-friendly properties
+   ================================================= */
 
-/* --- Color Tokens (GTK syntax) --- */
-@define-color bar-bg rgba(24, 25, 27, 0.78);
-@define-color item-bg rgba(255, 255, 255, 0.06);
-@define-color item-hover rgba(255, 255, 255, 0.12);
+/* Colors (GTK style) */
+@define-color bar-bg rgba(18,20,22,0.82);
+@define-color item-bg rgba(255,255,255,0.04);
+@define-color item-hover rgba(255,255,255,0.08);
 
-@define-color fg #e8ebf0;
+@define-color fg #e7eaf0;
 @define-color muted #9aa3ad;
-
-@define-color accent #7cd4f5;
+@define-color accent #63d0ea;
 @define-color ok #9fe29f;
 @define-color warn #f3c178;
 @define-color crit #ff7070;
 
-/* --- Bar Container --- */
+/* ======= Bar container ======= */
 #bar {
   background-color: @bar-bg;
-  padding: 6px 12px;
-  margin: 8px;
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.40);
   color: @fg;
+  padding: 6px;
+  border-radius: 12px;
 }
 
-/* --- Shared module styling --- */
+/* Base text/pill style applied to elements inside the bar */
 #bar * {
-  font-weight: 500;
-  border-radius: 10px;
+  color: @fg;
   padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-align: center;
+  min-height: 26px;
 }
 
-/* --- Workspaces --- */
-#workspaces {
-  spacing: 8px;
-}
+/* ======= Workspaces ======= */
+/* The workspaces container itself is left unmodified (Waybar arranges items).
+   Use pill-like buttons to convey state. */
 
 #workspaces button {
   background-color: transparent;
   color: @muted;
-  padding: 6px 14px;
+  border: none;
+  min-width: 34px;
+  max-width: 160px;
+  padding: 6px 12px;
   border-radius: 10px;
-  transition: 200ms ease;
 }
 
-/* focused */
+/* focused workspace \u2014 pill with subtle filled background */
 #workspaces button.workspace--focused {
   background-color: @item-bg;
   color: @fg;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
-/* visible (but not focused) */
+/* visible (not focused) \u2014 slightly stronger text */
 #workspaces button.workspace--visible {
   color: @fg;
 }
 
-/* urgent */
+/* urgent workspace \u2014 high-contrast caution style */
 #workspaces button.workspace--urgent {
-  background-color: rgba(255, 80, 80, 0.16);
+  background-color: rgba(255,80,80,0.12);
   color: @crit;
-  box-shadow: inset 0 0 0 1px rgba(255, 80, 80, 0.25);
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(255,80,80,0.14);
 }
 
-/* hover */
+/* hover state \u2014 used on interactive items */
 #workspaces button:hover {
   background-color: @item-hover;
   color: @fg;
 }
 
-/* --- Clock --- */
+/* ======= Center clock ======= */
 #clock {
   background-color: @item-bg;
   padding: 6px 16px;
-  font-weight: 600;
   border-radius: 12px;
   color: @fg;
-  margin: 0 12px;
+  font-weight: 700;
+  min-width: 160px;
 }
 
+/* Slight hover emphasis for clock */
 #clock:hover {
-  background-color: @item-hover;
-}
-
-/* --- Network --- */
-#network {
-  color: @muted;
-}
-
-#network:hover {
   background-color: @item-hover;
   color: @fg;
 }
 
+/* ======= Network ======= */
+#network {
+  color: @muted;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 10px;
+}
+
+/* connected / disconnected helpers (Waybar may set classes) */
 #network.linked {
   color: @ok;
 }
@@ -104,16 +107,20 @@
   color: @warn;
 }
 
-/* --- Battery --- */
-#battery {
-  color: @muted;
-}
-
-#battery:hover {
+#network:hover {
   background-color: @item-hover;
   color: @fg;
 }
 
+/* ======= Battery ======= */
+#battery {
+  color: @muted;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 10px;
+}
+
+/* charging / warning / critical shapes (Waybar sets classes) */
 #battery.charging {
   color: @accent;
 }
@@ -124,16 +131,41 @@
 
 #battery.critical {
   color: @crit;
-  background-color: rgba(255, 80, 80, 0.14);
+  background-color: rgba(255,80,80,0.10);
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgba(255,80,80,0.10);
 }
 
-/* --- Tray --- */
+#battery:hover {
+  background-color: @item-hover;
+  color: @fg;
+}
+
+/* ======= System tray ======= */
 #tray {
   padding-left: 8px;
-  margin-left: 6px;
-  border-left: 1px solid rgba(255,255,255,0.06);
+  padding-right: 8px;
+  border-left: 1px solid rgba(255,255,255,0.04);
 }
 
+/* tray items hover */
 #tray > .tray-item:hover {
   background-color: @item-hover;
+  color: @fg;
+}
+
+/* ======= Small utility styles ======= */
+/* Ensure icons and text align visually */
+#bar icon, #bar img {
+  vertical-align: middle;
+  min-height: 18px;
+  min-width: 18px;
+}
+
+/* Small text / muted label helper */
+.label-muted {
+  color: @muted;
+  font-weight: 500;
+  font-size: 11px;
 }
