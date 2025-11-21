@@ -1,10 +1,10 @@
 /* ======================================
-   GTK-CSS compatible Waybar theme
-   - No :root, no CSS vars, no text-align
-   - Uses only GTK-friendly properties
+   Final GTK-CSS for Waybar (Strict-safe)
+   - No max-width/min-width, no invalid props
+   - Only GTK-supported properties used
    ====================================== */
 
-/* Colors */
+/* Color tokens */
 @define-color bar-bg rgba(18,20,22,0.82);
 @define-color item-bg rgba(255,255,255,0.04);
 @define-color item-hover rgba(255,255,255,0.08);
@@ -40,11 +40,9 @@
   border: none;
   padding: 6px 12px;
   border-radius: 10px;
-  min-width: 34px;
-  max-width: 160px;
 }
 
-/* focused workspace — subtle filled pill */
+/* focused workspace \u2014 subtle filled pill */
 #workspaces button.workspace--focused {
   background-color: @item-bg;
   color: @fg;
@@ -77,10 +75,9 @@
   border-radius: 12px;
   color: @fg;
   font-weight: 700;
-  min-width: 140px;
 }
 
-/* Hover emphasis for clock */
+/* hover for clock */
 #clock:hover {
   background-color: @item-hover;
 }
@@ -150,15 +147,7 @@
   color: @fg;
 }
 
-/* ======= Small utility helpers ======= */
-/* Ensure icons align visually */
-#bar icon, #bar img {
-  vertical-align: middle;
-  min-height: 18px;
-  min-width: 18px;
-}
-
-/* Muted label helper */
+/* ======= Muted label helper ======= */
 .label-muted {
   color: @muted;
   font-weight: 500;
