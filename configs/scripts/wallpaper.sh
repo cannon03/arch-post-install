@@ -13,5 +13,5 @@ while true; do
     swaybg -i "$WALL" -m fill &
 
     # Wait 10 minutes
-    sleep 30
+    sleep 600
 done
