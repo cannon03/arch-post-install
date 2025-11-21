@@ -4,7 +4,7 @@ set -euo pipefail
 echo ">>> Enabling system services..."
 
 
-cp -r ./configs/systemd/ /etc/systemd/
+sudo cp -r ./configs/systemd/ /etc/systemd/
 
 systemctl daemon-reload
 
